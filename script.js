@@ -31,17 +31,7 @@ function showSingleDish(dish){
     const largeImg = base + "large/" + imageName + ".jpg";
     clone.querySelector("img").src = smallImg;
 
-    if (dish.discount) {
-        console.log("yeah")
-        clone.querySelector(".price-full span").textContent=dish.price;
-        //calculate new price
-        const newPrice = Math.round(dish.price - dish.price * dish.discount / 100);
-        clone.querySelector(".price-discount span").textContent=newPrice;
 
-    } else {
-        clone.querySelector(".price-discount").remove()
-        clone.querySelector(".price-full span").textContent=dish.price;
-    }
 
     const parent = document.querySelector("main");
     parent.appendChild(clone)
