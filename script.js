@@ -2,12 +2,14 @@ fetch("https://kea-alt-del.dk/t5/api/categories")
     .then(res => res.json())
     .then(createCategories)
 
+
 function createCategories(data) {
     console.log(data)
     data.forEach(function(oneCategory){
 
         const section = document.createElement("section");
         section.id = oneCategory;
+
         const h2 = document.createElement("h2");
         h2.textContent = oneCategory;
         section.appendChild(h2);

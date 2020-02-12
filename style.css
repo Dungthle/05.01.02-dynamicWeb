@@ -2,14 +2,28 @@
     box-sizing: border-box;
 }
 
-main{
-    font-family: Avenir, Roboto, Helvetica, san-serif;
-    font-size: 0.8rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 1rem;
+body {
 
 }
+
+main {
+    /*display: grid;
+    grid-template-columns: 1fr 1fr;*/
+    max-width: 100%    ;
+    font-family: Avenir, Roboto, Helvetica, san-serif;
+    font-size: 0.8rem;
+    grid-gap: 1rem;
+    flex-direction: row;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+/*     display:grid;
+    grid-template-columns: 1fr 1fr; */
+}
+
+
 
 article {
     display: flex;
@@ -17,14 +31,28 @@ article {
     border: 1px solid black;
     border-radius: 1rem;
     padding: 2rem;
+    margin: 10px;
+
 }
 
 h2 {
-    padding: 30px;
+    margin: 10px;
 }
 
 img {
     max-width: 100%;
     height: auto;
+}
+
+
+article button{
+    background: teal;
+    color:white;
+    justify-content: center;
+    border: 2px;
+    border-radius: 1rem;
+    padding: 10px;
+    align-items: flex-end;
+
 }
 
