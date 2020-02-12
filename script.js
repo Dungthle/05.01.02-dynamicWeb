@@ -1,17 +1,41 @@
-fetch("https://kea-alt-del.dk/t5/api/productlist")
-.then(function(response) {
-    return response.json()
-})
-.then(function (data){
-      showData(data)
-      })
+fetch("https://kea-alt-del.dk/t5/api/categories")
+    .then(res => res.json())
+    .then(createCategories)
 
-      function showData(jsonData) {
-          jsonData.forEach(showSingleDish)
-          console.log(jsonData)
-      }
+function createCategories(data) {
+    console.log(data)
+    data.forEach(function(oneCategory){
 
-function showSingleDish(dish){
+        const section = document.createElement("section");
+        section.id = oneCategory;
+        const h2 = document.createElement("h2");
+        h2.textContent = oneCategory;
+        section.appendChild(h2);
+
+        console.log(section)
+
+        document.querySelector("main").appendChild(section);
+    })
+
+    getProducts();
+}
+
+function getProducts() {
+    fetch("https://kea-alt-del.dk/t5/api/productlist")
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            showData(data)
+        })
+}
+
+function showData(jsonData) {
+    jsonData.forEach(showSingleDish)
+    console.log(jsonData)
+}
+
+function showSingleDish(dish) {
 
     const template = document.querySelector("template").content;
     const clone = template.cloneNode(true);
@@ -31,17 +55,22 @@ function showSingleDish(dish){
     const largeImg = base + "large/" + imageName + ".jpg";
     clone.querySelector("img").src = smallImg;
 
-        if (dish.discount) {
+    if (dish.discount) {
         console.log("yeah")
-        clone.querySelector(".price-full span").textContent=dish.price;
+        clone.querySelector(".price-full span").textContent = dish.price;
         //calculate new price
         const newPrice = Math.round(dish.price - dish.price * dish.discount / 100);
-        clone.querySelector(".price-discount span").textContent=newPrice;
+        clone.querySelector(".price-discount span").textContent = newPrice;
 
     } else {
         clone.querySelector(".price-discount").remove()
-        clone.querySelector(".price-full span").textContent=dish.price;
+        clone.querySelector(".price-full span").textContent = dish.price;
     }
-    const parent = document.querySelector("main");
-    parent.appendChild(clone)
+
+    console.log(`#${dish.category}`)
+    document.querySelector(`#${dish.category}`).appendChild(clone);
+
+    /*const parent = document.querySelector("main");
+    parent.appendChild(clone)*/
+
 }
