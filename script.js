@@ -31,7 +31,7 @@ function showSingleDish(dish){
     const largeImg = base + "large/" + imageName + ".jpg";
     clone.querySelector("img").src = smallImg;
 
-    if (dish.discount) {
+        if (dish.discount) {
         console.log("yeah")
         clone.querySelector(".price-full span").textContent=dish.price;
         //calculate new price
@@ -42,7 +42,6 @@ function showSingleDish(dish){
         clone.querySelector(".price-discount").remove()
         clone.querySelector(".price-full span").textContent=dish.price;
     }
-
     const parent = document.querySelector("main");
     parent.appendChild(clone)
 }
