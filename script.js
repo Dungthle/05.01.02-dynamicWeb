@@ -6,16 +6,25 @@ function createCategories(data) {
     console.log(data)
     data.forEach(function(oneCategory){
 
+        const a = document.createElement("a")
+        a.setAttribute("href", `#${oneCategory}`);
+
+        document.querySelector("body>nav").appendChild(a);
+        a.textContent = oneCategory;
+
         const section = document.createElement("section");
         section.id = oneCategory;
+
         const h2 = document.createElement("h2");
         h2.textContent = oneCategory;
         section.appendChild(h2);
-
         console.log(section)
 
         document.querySelector("main").appendChild(section);
+
     })
+
+
 
     getProducts();
 }
