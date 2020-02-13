@@ -13,7 +13,6 @@ function createCategories(data) {
         const h2 = document.createElement("h2");
         h2.textContent = oneCategory;
         section.appendChild(h2);
-
         console.log(section)
 
         document.querySelector("main").appendChild(section);
