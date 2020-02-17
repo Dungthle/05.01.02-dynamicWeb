@@ -58,6 +58,15 @@ article button{
     margin: auto;
 }
 
+.vegetarian {
+    position: absolute;
+    height: 50%;
+    width: 20%;
+    background: url("img/vegetarianImg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .hide {
   display: none;
 }

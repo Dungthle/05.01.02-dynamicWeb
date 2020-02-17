@@ -1,6 +1,6 @@
 const modal = document.querySelector(".modal-background");
 modal.addEventListener("click", () => {
-  modal.classList.add("hide");
+    modal.classList.add("hide");
 });
 
 fetch("https://kea-alt-del.dk/t5/api/categories")
@@ -9,7 +9,7 @@ fetch("https://kea-alt-del.dk/t5/api/categories")
 
 function createCategories(data) {
     console.log(data)
-    data.forEach(function(oneCategory){
+    data.forEach(function (oneCategory) {
 
         const a = document.createElement("a")
         a.setAttribute("href", `#${oneCategory}`);
@@ -28,8 +28,6 @@ function createCategories(data) {
         document.querySelector("main").appendChild(section);
 
     })
-
-
 
     getProducts();
 }
@@ -59,6 +57,11 @@ function showSingleDish(dish) {
     clone.querySelector("p.price-full span").textContent = dish.price;
     clone.querySelector("p.price-discount span").textContent = dish.discount;
 
+    if (dish.vegetarian) {
+        clone.querySelector(".vegetarian").classList.remove("hide");
+    } else {
+        clone.querySelector(".vegetarian").classList.add("hide");
+    }
 
     const imageName = dish.image; // this would be dynamic
 
@@ -82,24 +85,26 @@ function showSingleDish(dish) {
     }
 
 
-  clone.querySelector("button").addEventListener("click", () => {
-      console.log("click", dish)
-    fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
-      .then(res => res.json())
-      .then(showDetails);
-  });
+    clone.querySelector("button").addEventListener("click", () => {
+        console.log("click", dish)
+        fetch(`https://kea-alt-del.dk/t5/api/product?id=${dish.id}`)
+            .then(res => res.json())
+            .then(showDetails);
+    });
 
     console.log(`#${dish.category}`)
     document.querySelector(`#${dish.category}`).appendChild(clone);
 
     /*const parent = document.querySelector("main");
     parent.appendChild(clone)*/
-
 }
 
 function showDetails(data) {
-  modal.querySelector(".modal-name").textContent = data.name;
-  modal.querySelector(".modal-description").textContent = data.longdescription;
-  //...
-  modal.classList.remove("hide");
+    modal.querySelector(".modal-name").textContent = data.name;
+    modal.querySelector(".modal-description").textContent = data.longdescription;
+    modal.querySelector(".modal-price span").textContent = data.price;
+    modal.querySelector(".allergens span").textContent = data.allergens;
+    modal.querySelector(".alcohol span").textContent = data.alcohol;
+
+    modal.classList.remove("hide");
 }
